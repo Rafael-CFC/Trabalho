@@ -1,6 +1,11 @@
 const translations = {
     'pt': {
         'page_title': 'O Mundo do Futebol',
+        'nav_history': 'História do Futebol⚽', // Adicionado
+        'nav_messi': 'Lionel Messi👽',       // Adicionado
+        'nav_ronaldo': 'Cristiano Ronaldo🤖', // Adicionado
+        'nav_neymar': 'Neymar✋🏽😜🤚🏽',     // Adicionado
+        'nav_yamal': 'Lamine Yamal 💯',     // Adicionado
         'history_heading': 'História do Futebol⚽',
         'history_text': 'O futebol tem suas raízes em jogos de bola praticados em diversas culturas ao longo da história, mas o formato moderno começou a se consolidar na Inglaterra no século XIX, com a criação das primeiras regras. Em 1863, foi fundada a Football Association, que padronizou as regras do jogo. Desde então, o futebol se espalhou pelo mundo, tornando-se o esporte mais popular e unindo milhões de pessoas em torno de competições como a Copa do Mundo.',
         'messi_heading': 'Lionel Messi👽',
@@ -14,6 +19,11 @@ const translations = {
     },
     'en': {
         'page_title': 'The World of Football',
+        'nav_history': 'History of Football⚽', // Adicionado
+        'nav_messi': 'Lionel Messi👽',       // Adicionado
+        'nav_ronaldo': 'Cristiano Ronaldo🤖', // Adicionado
+        'nav_neymar': 'Neymar✋🏽😜🤚🏽',     // Adicionado
+        'nav_yamal': 'Lamine Yamal 💯',     // Adicionado
         'history_heading': 'History of Football⚽',
         'history_text': 'Football has its roots in ball games played in various cultures throughout history, but the modern format began to consolidate in England in the 19th century with the creation of the first rules. In 1863, the Football Association was founded, standardizing the rules of the game. Since then, football has spread worldwide, becoming the most popular sport and uniting millions of people around competitions like the World Cup.',
         'messi_heading': 'Lionel Messi👽',
@@ -23,10 +33,15 @@ const translations = {
         'neymar_heading': 'Neymar✋🏽😜🤚🏽',
         'neymar_text': 'Neymar Jr. is a Brazilian football player, widely considered one of the best in the world. Born on February 5, 1992, in Mogi das Cruzes, he began his professional career at Santos FC, where he gained international prominence. In 2013, he transferred to Barcelona, winning several titles, including the Champions League. Currently, he plays for Paris Saint-Germain and the Brazilian national team, known for his technical skill and explosive playing style.',
         'yamal_heading': 'Lamine Yamal 💯',
-        'yamal_text': 'Lamine Yamal is a young Spanish football player, born in 2007, who has stood out in FC Barcelona\'s youth categories. He is known for his technical skill, speed, and dribbling ability, which makes him a promise in the European football scene and, for many, already a reality. Yamal made his professional debut for Barcelona in 2023, becoming one of the youngest players to play for the first team. His rapid rise and remarkable talent have generated great expectations about his future in the sport.'
+        'yamal_text': 'Lamine Yamal is a young Spanish football player, born in 2007, who has stood out in FC Barcelona\'s youth categories. He is known for his technical skill, speed, and dribbling ability, which makes him a promise in the European football scene and, for many, already a reality. Yamal made his professional debut for Barcelona in 2023, becoming one of the youngest players to play for the first team. His rapid rise and remarkable talent have generated great expectation about his future in the sport.'
     },
     'es': {
         'page_title': 'El Mundo del Fútbol',
+        'nav_history': 'Historia del Fútbol⚽', // Adicionado
+        'nav_messi': 'Lionel Messi👽',       // Adicionado
+        'nav_ronaldo': 'Cristiano Ronaldo🤖', // Adicionado
+        'nav_neymar': 'Neymar✋🏽😜🤚🏽',     // Adicionado
+        'nav_yamal': 'Lamine Yamal 💯',     // Adicionado
         'history_heading': 'Historia del Fútbol⚽',
         'history_text': 'El fútbol tiene sus raíces en juegos de pelota practicados en diversas culturas a lo largo de la historia, pero el formato moderno comenzó a consolidarse en Inglaterra en el siglo XIX con la creación de las primeras reglas. En 1863, se fundó la Football Association, que estandarizó las reglas del juego. Desde entonces, el fútbol se ha extendido por todo el mundo, convirtiéndose en el deporte más popular y uniendo a millones de personas en torno a competiciones como la Copa del Mundo.',
         'messi_heading': 'Lionel Messi👽',
@@ -41,30 +56,35 @@ const translations = {
 };
 
 function setLanguage(lang) {
-    console.log('Attempting to set language to:', lang);
+    console.log('Tentando definir o idioma para:', lang);
     localStorage.setItem('preferredLanguage', lang);
 
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         if (translations[lang] && translations[lang][key]) {
-            element.innerHTML = translations[lang][key]; // Use innerHTML to preserve list items
-            console.log(`Translated key '${key}' to: ${translations[lang][key]}`);
+            // Verifica se o elemento é um link de navegação (uma tag <a> dentro de .menu)
+            if (element.tagName === 'A' && element.closest('.menu')) {
+                element.textContent = translations[lang][key]; // Usa textContent para links
+            } else {
+                element.innerHTML = translations[lang][key]; // Usa innerHTML para outros elementos
+            }
+            console.log(`Chave traduzida '${key}' para: ${translations[lang][key]}`);
         } else {
-            console.warn(`Translation missing for key '${key}' in language '${lang}'`);
+            console.warn(`Tradução faltando para a chave '${key}' no idioma '${lang}'`);
         }
     });
 
     if (translations[lang] && translations[lang]['page_title']) {
         document.title = translations[lang]['page_title'];
-        console.log('Page title updated to:', translations[lang]['page_title']);
+        console.log('Título da página atualizado para:', translations[lang]['page_title']);
     } else {
-        console.warn(`Page title translation missing for language '${lang}'`);
+        console.warn(`Tradução do título da página faltando para o idioma '${lang}'`);
     }
 
     document.querySelectorAll('.language-switcher a').forEach(link => {
         if (link.getAttribute('data-lang') === lang) {
             link.classList.add('active');
-            console.log(`Added 'active' class to ${lang} link`);
+            console.log(`Adicionada a classe 'active' ao link ${lang}`);
         } else {
             link.classList.remove('active');
         }
@@ -76,27 +96,20 @@ document.addEventListener('click', (event) => {
     if (targetLink) {
         event.preventDefault();
         const lang = targetLink.getAttribute('data-lang');
-        console.log('Language link clicked for:', lang);
+        console.log('Link de idioma clicado para:', lang);
         setLanguage(lang);
     }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded. Checking saved language...');
+    console.log('Conteúdo DOM Carregado. Verificando idioma salvo...');
     const savedLanguage = localStorage.getItem('preferredLanguage');
     if (savedLanguage) {
-        console.log('Saved language found:', savedLanguage);
+        console.log('Idioma salvo encontrado:', savedLanguage);
         setLanguage(savedLanguage);
     } else {
-        console.log('No saved language found. Defaulting to Portuguese.');
+        console.log('Nenhum idioma salvo encontrado. Usando Português como padrão.');
         setLanguage('pt');
-    }
-});
-document.querySelectorAll('.language-switcher a').forEach(link => {
-    if (link.getAttribute('data-lang') === lang) {
-        link.classList.add('active');
-    } else {
-        link.classList.remove('active');
     }
 });
 
