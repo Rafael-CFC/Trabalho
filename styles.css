@@ -64,7 +64,7 @@ body {
 
 /* Cores equilibradas para cada botão do menu */
 .menu ul li:nth-child(1) a {
-  background-color: #4dff00;
+  background-color: #08b510;
 }
 
 .menu ul li:nth-child(2) a {
@@ -109,4 +109,15 @@ body {
 .box h2 {
   color: var(#006ef5);
   margin-top: 0;
+}
+.language-switcher a {
+  font-size: 24px;
+  margin-right: 8px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.language-switcher a.active {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 4px white);
 }
