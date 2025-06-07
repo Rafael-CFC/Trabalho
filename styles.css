@@ -64,7 +64,7 @@ body {
 
 /* Cores equilibradas para cada botão do menu */
 .menu ul li:nth-child(1) a {
-  background-color: #08b510;
+  background-color: #08b50;
 }
 
 .menu ul li:nth-child(2) a {
