@@ -1,0 +1,123 @@
+/* Reset de margin e padding e fonte branca */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  color: #fff; /* Define a cor do texto como branco */
+  font-family: Arial, sans-serif;
+}
+
+/* Fundo com imagem cobrindo a tela */
+body {
+  background: url("https://wallpapers.com/images/high/4k-football-goal-close-up-lilha86ujobh40vr.webp") no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Container principal dividido em duas colunas */
+.container {
+  display: flex;
+  grid-template-columns: 250px 1fr; /* Sidebar fixa + área de conteúdo flexível */
+  height: 100%;
+}
+
+/* Sidebar com fundo cinza semitransparente */
+.sidebar {
+  background: rgba(128, 128, 128, 0.7);
+  padding: 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-basis: 20%;
+  flex-direction: column;
+}
+
+/* Ajuste para a logo */
+.logo img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60%;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+/* Menu: lista sem marcadores e com espaçamentos */
+.menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 10;
+}
+
+.menu ul li {
+  margin-bottom: 100px;
+}
+
+.menu ul li a {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+/* Cores equilibradas para cada botão do menu */
+.menu ul li:nth-child(1) a {
+  background-color: #08b510;
+}
+
+.menu ul li:nth-child(2) a {
+  background-color: #5b9a91;
+}
+
+.menu ul li:nth-child(3) a {
+  background-color: #ed0f0f;
+}
+
+.menu ul li:nth-child(4) a {
+  background-color: #f9bc05;
+}
+
+.menu ul li:nth-child(5) a {
+  background-color: #0900ff;
+}
+
+.menu ul li a:hover {
+  opacity: 0.8;
+}
+
+/* Área de conteúdo: boxes empilhados verticalmente */
+.content {
+  padding: 20px;
+  display: flex;
+  flex-basis: 100%;
+  flex-direction:column;
+  gap: 20px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* Boxes com fundo preto semitransparente e cantos arredondados */
+.box {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 5px;
+}
+
+/* Títulos das seções com destaque em amarelo escuro */
+.box h2 {
+  color: var(#006ef5);
+  margin-top: 0;
+}
+.language-switcher a {
+  font-size: 24px;
+  margin-right: 8px;
+  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.language-switcher a.active {
+  transform: scale(1.3);
+  filter: drop-shadow(0 0 4px white);
+}
